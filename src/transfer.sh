@@ -8,6 +8,8 @@ transfer_file_name=$(basename $transfer_file_path)
 
 source /home/yashshingade28/projects/sandbox/ibliz/src/init_setup.sh
 
+source $IBLIZ_SRC/init_aws_setup.sh $login_name $aws_private_key_path
+
 source $IBLIZ_SRC/gen_aes_key.sh
 
 source $IBLIZ_SRC/gen_key_pair.sh
