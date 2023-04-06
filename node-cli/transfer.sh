@@ -1,5 +1,12 @@
 #!/usr/bin/bash
 
+echo "  ___ ____  _     ___ _____"
+echo " |_ _| __ )| |   |_ _|__  /"
+echo "  | ||  _ \| |    | |  / / "
+echo "  | || |_) | |___ | | / /_ "
+echo " |___|____/|_____|___/____|"
+
+
 transfer_file_path=$1
 login_name=$2
 aws_private_key_path=$3

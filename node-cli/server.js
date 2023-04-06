@@ -108,16 +108,16 @@ async function runScript(hostip, username, prikeylc) {
 //       console.log(`${stdout}`);
 //     });
 //   }
-async function runScriptforprem(hostip, username) {
-    const scriptPath = path.join(process.cwd(), "sshscript.sh");
-    execFile("bash", [scriptPath, username, hostip], (error, stdout, stderr) => {
-      if (error) {
-        console.error(`execFile error: ${error}`);
-        return;
-      }
-      console.log(`${stdout}`);
-    });
-  }
+// async function runScriptforprem(hostip, username) {
+//     const scriptPath = path.join(process.cwd(), "sshscript.sh");
+//     execFile("bash", [scriptPath, username, hostip], (error, stdout, stderr) => {
+//       if (error) {
+//         console.error(`execFile error: ${error}`);
+//         return;
+//       }
+//       console.log(`${stdout}`);
+//     });
+//   }
   
   async function question1() {
     await sleep();
@@ -147,18 +147,23 @@ async function runScriptforprem(hostip, username) {
         await askQ3();
         console.log("You are here !");
         await askQ4();
-        // modules.init_aws_setup(username+"@"+hostip, prikeylc);
-        await spin();
+        let spinner = createSpinner("Initializing AWS setup").start();
+        modules.init_aws_setup(username+"@"+hostip, prikeylc);
+        spinner.success({ text: "Completed the process !\n" });
+
+        spinner = createSpinner("Generating AES Keys").start();
         modules.gen_aes_key();
-        console.log("Generating the aes key ");
-        await spin();
+        spinner.success({ text: "Completed the process !\n" });
         
-        console.log("Generating the key pair for AWS");
+        // console.log("Generating the aes key ");
+        // await spin();
+        spinner = createSpinner("Generating the key pair for AWS").start();
         modules.gen_key_pair();
-        await spin();
+        spinner.success({ text: "Completed the process !\n" });
+        // console.log("Generating the key pair for AWS");
 
         // console.log(player);
-        await runScript(hostip, username, prikeylc);
+        // await runScript(hostip, username, prikeylc);
   }
 
   async function toPrem() {
