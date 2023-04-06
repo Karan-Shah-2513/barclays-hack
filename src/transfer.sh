@@ -23,3 +23,5 @@ source $IBLIZ_SRC/enc_file_rsa.sh $IBLIZ_HOME/aes256.key $IBLIZ_HOME/rec_cred/pu
 source $IBLIZ_SRC/send_to_aws.sh $IBLIZ_HOME/encrypted_aes256.key $login_name $aws_private_key_path
 
 source $IBLIZ_SRC/send_to_aws.sh $IBLIZ_HOME/encrypted_$transfer_file_name $login_name $aws_private_key_path
+
+sudo ssh $login -i $key_path source /home/ubuntu/ibliz/src/dec_msg.sh $transfer_file_name
